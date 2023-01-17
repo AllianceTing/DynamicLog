@@ -10,16 +10,19 @@
     </parent>
     <groupId>com.example</groupId>
     <artifactId>DynamicLog</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>V.1.0</version>
     <name>DynamicLog</name>
     <description>DynamicLog</description>
+
     <properties>
         <java.version>19</java.version>
     </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
+            <version>3.0.1</version>
         </dependency>
 
         <dependency>
@@ -27,10 +30,21 @@
             <artifactId>spring-boot-configuration-processor</artifactId>
             <optional>true</optional>
         </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
+        </dependency>
+<!--aop dependency-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
     </dependencies>
 
@@ -46,5 +60,18 @@
             </plugin>
         </plugins>
     </build>
+
+    <developers>
+        <developer>
+            <roles>
+              <role>Master</role>
+              <role>User</role>
+            </roles>
+            <organization>FreeWorker</organization>
+            <name>张震霆</name>
+            <email>2426446427@qq.com</email>
+           <organizationUrl>https://https://github.com/AllianceTing</organizationUrl>
+        </developer>
+    </developers>
 
 </project>
