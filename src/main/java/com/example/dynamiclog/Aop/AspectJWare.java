@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.StopWatch;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
+
 import java.lang.constant.Constable;
 import java.util.Locale;
 import java.util.Map;
@@ -27,12 +28,14 @@ public class AspectJWare {
 @Pointcut("@annotation(com.example.dynamiclog.Aop.Log)")
 public void pointcut(){}
 @Around(value = "pointcut()")
-public void doLogPrint(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
+public Object doLogPrint(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
     StopWatch stopWatch =new StopWatch();
+    // do start compute Time
     stopWatch.start();
-    //获取连接点方法的名字
+    // do get method Name
     var methodName = proceedingJoinPoint.getSignature().getName();
     ServletRequestAttributes ra = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+    assert  ra != null;
     HttpServletRequest request = ra.getRequest();
     MethodSignature signature = (MethodSignature) proceedingJoinPoint.getSignature();
     var annotationValue = signature.getMethod().getAnnotation(Log.class).value();
@@ -46,9 +49,9 @@ public void doLogPrint(ProceedingJoinPoint proceedingJoinPoint) throws Throwable
     Constable contextPath = request.getContextPath();
     var requestProtocol = request.getProtocol();
     String[] ToBparameterNames = signature.getParameterNames();
-    proceedingJoinPoint.proceed();
     stopWatch.stop();
     long watchTotalTimeNanos = stopWatch.getTotalTimeNanos();
+    return proceedingJoinPoint.proceed();
 }
 }
 
